@@ -53,9 +53,7 @@ export default function CreateItem() {
 
   async function createSale(url) {
 
-    const web3 = new Web3(window.ethereum)
-    await web3.request({ method: "eth_requestAccounts" })
-    const provider = new ethers.providers.Web3Provider(web3)
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
     
     /* next, create the item */
@@ -104,7 +102,7 @@ export default function CreateItem() {
         />
         {
           fileUrl && (
-            <Image className="rounded mt-4" width="350" src={fileUrl} />
+            <img className="rounded mt-4" width="350" height="250" alt="NFT Image" src={fileUrl} />
           )
         }
         <button onClick={createMarket} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">
