@@ -68,7 +68,7 @@ async function loadNFTs() {
       <nav className="border-b p-6">
         <b>
         <p className="text-4xl font-bold">Metaverse Marketplace</p>
-<<<<<<< HEAD
+
         <div className="linksBar">
           <Link to="/" className='aLink'>
               <img src="https://i.ibb.co/yW7xX4r/1639580476361.png" alt="Logo" className="logo" />
@@ -80,19 +80,6 @@ async function loadNFTs() {
              My Digital Assets
           </Link>
           <Link to="/dashboard" className='aLink'>
-=======
-        <div className="flex mt-4">
-          <Link to="/">
-              <img src="https://i.ibb.co/yW7xX4r/1639580476361.png" alt="Logo" className="logo" />
-          </Link>
-          <Link to="/create">
-          Sell Digital Assets
-          </Link>
-          <Link to="/profile">
-             My Digital Assets
-          </Link>
-          <Link to="/dashboard">
->>>>>>> 1c798fb17c33a064eb8874646e22135542e0d89f
               Creator Dashboard
           </Link>
         </div>

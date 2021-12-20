@@ -71,33 +71,15 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
             nfts.map((nft, i) => (
-<<<<<<< HEAD
               <div key={i} className="itemContainer">
-=======
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <a href={ "/nft/tokenId/" + nft.itemId }>
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
->>>>>>> 1c798fb17c33a064eb8874646e22135542e0d89f
                 <img src={nft.image} />
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                 </div>
                 <div className="p-4 bg-black">
                   <p className="text-2xl mb-4 font-bold text-white">{nft.price} ETH</p>
-<<<<<<< HEAD
-                 <a href={ "/nft/tokenId/" + nft.itemId }>
-                   <button>
-                     View this item
-                     </button>
-                   </a>
-=======
-                  <p>Owner: {nft.seller}</p>
-                  <p>TokenId: {nft.itemId}</p>
-                  <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
->>>>>>> 1c798fb17c33a064eb8874646e22135542e0d89f
+                <a href={ "/nft/tokenId/" + nft.itemId }><button>View this item</button></a>
                 </div>
-              </div>
-              </a>
               </div>
             ))
           }
