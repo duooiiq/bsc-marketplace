@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 import detectEthereumProvider from '@metamask/detect-provider'
+import './market.css'
 
 import {
   nftaddress, nftmarketaddress
@@ -70,24 +71,19 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
             nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <a href={ "/nft/tokenId/" + nft.itemId }>
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
+              <div key={i} className="itemContainer">
                 <img src={nft.image} />
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
-                  <div style={{ height: '70px', overflow: 'hidden' }}>
-                    <p className="text-gray-400">{nft.description}</p>
-                  </div>
                 </div>
                 <div className="p-4 bg-black">
                   <p className="text-2xl mb-4 font-bold text-white">{nft.price} ETH</p>
-                  <p>Owner: {nft.seller}</p>
-                  <p>TokenId: {nft.itemId}</p>
-                  <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
+                 <a href={ "/nft/tokenId/" + nft.itemId }>
+                   <button>
+                     View this item
+                     </button>
+                   </a>
                 </div>
-              </div>
-              </a>
               </div>
             ))
           }

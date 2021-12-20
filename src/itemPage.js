@@ -9,12 +9,13 @@ import {
   import Market from './artifacts/contracts/Market.sol/NFTMarket.json'
 
   export default function ItemPage() {
-const [nfts, setNfts] = useState([])
+  const [nfts, setNfts] = useState([])
   const [loadingState, setLoadingState] = useState('not-loaded')
   useEffect(() => {
     loadNFTs()
   }, [])
   async function loadNFTs() {
+    await window.ethereum.request({ method: "eth_requestAccounts" })
     const provider = new ethers.providers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545/")
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider)
     const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, provider)
@@ -37,7 +38,19 @@ const [nfts, setNfts] = useState([])
     }))
     setNfts(items)
     setLoadingState('loaded') 
-  }if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
+  }
+  async function buyNft(nft) {
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const signer = provider.getSigner()
+    const contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
+    const transaction = await contract.createMarketSale(nftaddress, nft.itemId, {
+      value: price
+    })
+    await transaction.wait()
+    loadNFTs()
+  }
   return (
     <div className="flex justify-center">
     <div className="px-4" style={{ maxWidth: '1600px' }}>

@@ -66,21 +66,23 @@ async function loadNFTs() {
     <Router key={i}>
             <div key={i} className="border shadow rounded-xl overflow-hidden">
       <nav className="border-b p-6">
+        <b>
         <p className="text-4xl font-bold">Metaverse Marketplace</p>
-        <div className="flex mt-4">
-          <Link to="/">
+        <div className="linksBar">
+          <Link to="/" className='aLink'>
               <img src="https://i.ibb.co/yW7xX4r/1639580476361.png" alt="Logo" className="logo" />
           </Link>
-          <Link to="/create">
+          <Link to="/create" className='aLink'>
           Sell Digital Assets
           </Link>
-          <Link to="/profile">
+          <Link to="/profile" className='aLink'>
              My Digital Assets
           </Link>
-          <Link to="/dashboard">
+          <Link to="/dashboard" className='aLink'>
               Creator Dashboard
           </Link>
         </div>
+        </b>
       </nav>
     </div>
     <Switch>

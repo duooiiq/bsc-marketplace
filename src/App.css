@@ -4,3 +4,11 @@ width: 42px;
 height: 42px;
 border: none;
 }
+.linksBar {
+background-color: aquamarine;
+border-radius: 21px;
+word-spacing: 7px;
+}
+.aLink {
+    text-decoration: none;
+}
