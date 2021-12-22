@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
-    "start": "HTTPS=true SSL_CRT_FILE=localhost.crt SSL_KEY_FILE=localhost.key react-scripts start"
+    "start": "react-scripts start"
   },
   "dependencies": {
     "@metamask/detect-provider": "latest",
@@ -12,6 +12,7 @@
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@openzeppelin/contracts": "^4.2.0",
     "axios": "^0.21.1",
+    "recoil": "latest",
     "chai": "^4.3.4",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.4.1",
