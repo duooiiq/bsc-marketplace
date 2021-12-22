@@ -14,11 +14,6 @@ import Market from './artifacts/contracts/Market.sol/NFTMarket.json'
 
 const Web3 = require('web3')
 
-let rpcEndpoint = null
-
-if (process.env.NEXT_PUBLIC_WORKSPACE_URL) {
-  rpcEndpoint = process.env.NEXT_PUBLIC_WORKSPACE_URL
-}
 
 export default function Home() {
   const [nfts, setNfts] = useState([])

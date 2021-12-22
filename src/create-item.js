@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ethers } from 'ethers'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
+import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 
 const web3 = require('web3-eth-contract')
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
@@ -76,12 +76,20 @@ export default function CreateItem() {
     await transaction.wait()
     router.push('/')
   }
+  const itemIdAtom = atom({
+    key: "itemIdAtom", // unique ID (with respect to other atoms/selectors)
+    default: undefined,
+  });
+
+  const [id, setId] = useRecoilState(itemIdAtom);
   async function GetPastEvents() {
+    const myId = props.match.params.id;
+    setId(myId);
     await window.ethereum.request({ method: "eth_requestAccounts" })
-    const provider = new Web3(window.web3.currentProvider)
     web3.setProvider("https://data-seed-prebsc-1-s1.binance.org:8545/")
     const contract = new web3(Market.abi, nftmarketaddress)
     contract.getPastEvents('MarketItemCreated', {
+      filter: { id: parseInt(myId) + 1 },
       fromBlock: "0",
       toBlock: "latest"
     }, function(error, events){ console.log(events);}).then(function(events){
