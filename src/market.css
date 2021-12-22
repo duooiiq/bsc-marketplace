@@ -3,4 +3,8 @@ border-radius: 8px;
 background-color: white;
 margin: 0 auto;
 width: 120px;
+display: inline-block;
+}
+.oneContainer {
+display: flex;
 }

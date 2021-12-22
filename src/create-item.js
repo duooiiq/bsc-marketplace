@@ -4,8 +4,9 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
-const Web3 = require('web3')
+const web3 = require('web3-eth-contract')
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+const Web3 = require('web3')
 
 import {
   nftaddress, nftmarketaddress
@@ -67,7 +68,7 @@ export default function CreateItem() {
     const price = ethers.utils.parseUnits(formInput.price, 'ether')
   
     /* then list the item for sale on the marketplace */
-    contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
+    contract = new ethers.Contract(Market.abi, nftmarketaddress, signer)
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString()
 
@@ -75,7 +76,19 @@ export default function CreateItem() {
     await transaction.wait()
     router.push('/')
   }
-
+  async function GetPastEvents() {
+    await window.ethereum.request({ method: "eth_requestAccounts" })
+    const provider = new Web3(window.web3.currentProvider)
+    web3.setProvider("https://data-seed-prebsc-1-s1.binance.org:8545/")
+    const contract = new web3(Market.abi, nftmarketaddress)
+    contract.getPastEvents('MarketItemCreated', {
+      fromBlock: "0",
+      toBlock: "latest"
+    }, function(error, events){ console.log(events);}).then(function(events){
+      console.log(events) // same results as the optional callback above
+  });
+  
+  }
   return (
     <div className="flex justify-center">
       <div className="w-1/2 flex flex-col pb-12">
@@ -108,6 +121,7 @@ export default function CreateItem() {
         <button onClick={createMarket} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">
           Create Digital Asset
         </button>
+        <button onClick={GetPastEvents}>Probar Get Past Events</button>
       </div>
     </div>
   )

@@ -18,6 +18,7 @@ import {
 } from './config'
 import { ethers } from 'ethers'
 import axios from 'axios'
+import NotFound from './404'
 
 import NFT from './artifacts/contracts/NFT.sol/NFT.json'
 import Market from './artifacts/contracts/Market.sol/NFTMarket.json'
@@ -54,6 +55,7 @@ async function loadNFTs() {
   setNfts(items)
   setLoadingState('loaded') 
 }
+
 
   return (
     <div className="flex justify-center">
@@ -99,9 +101,10 @@ async function loadNFTs() {
     <Route path={ "/nft/tokenId/" + nft.itemId }>
         <ItemPage />
     </Route>
-    <Route path="/">
+    <Route path="/" exact>
 <Home />
 </Route>
+<Route component={NotFound} />
 </Switch>
 </Router>
   )

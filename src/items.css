@@ -1,0 +1,9 @@
+.nftContainer {
+background-color: azure;
+margin: 0 auto;
+width: 356px;
+float: center;
+}
+.buyButtom {
+    border-radius: 5px;
+}

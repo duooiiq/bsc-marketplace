@@ -4,6 +4,7 @@ import axios from 'axios'
 import {
     nftaddress, nftmarketaddress
   } from './config'
+  import './items.css'
   
   import NFT from './artifacts/contracts/NFT.sol/NFT.json'
   import Market from './artifacts/contracts/Market.sol/NFTMarket.json'
@@ -61,19 +62,20 @@ import {
         {
           nfts.map((nft, i) => (
             <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <img src={nft.image} />
-              <div className="p-4">
-                <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
-                <div style={{ height: '70px', overflow: 'hidden' }}>
-                  <p className="text-gray-400">{nft.description}</p>
-                </div>
-              </div>
-              <div className="p-4 bg-black">
+              <img src={nft.image} style={{ float: 'left', width: '350px', height: 'auto' }} />
+              <div className="nftContainer">
+                <h1>Nombre :</h1><p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                 <p className="text-2xl mb-4 font-bold text-white">{nft.price} ETH</p>
                 <p>Owner: {nft.seller}</p>
                 <p>TokenId: {nft.itemId}</p>
-                <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
+                <button className="buyButtom" onClick={() => buyNft(nft)}>Buy</button>
               </div>
+              <div className='descriptionContainer' style={{ width: "356px" }}>
+              <h1>Description:</h1>
+                <b>
+                  <p className="text-gray-400">{nft.description}</p>
+                  </b>
+                  </div>
             </div>
 ))
         }
